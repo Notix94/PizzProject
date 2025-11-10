@@ -33,7 +33,20 @@ public class Commande {
   }
   
   public void annulerCommande() {
-    
+    if(this.etat != EtatCommande.CREE) {
+    	System.out.println("Il faut que l'etat de la commande soit en cree alors que : "+this.etat);
+    }
+    //annuler commande
+  }
+  
+  
+  public void validerCommande() {
+	  if(this.etat != EtatCommande.CREE) {
+		  System.out.println("Il faut que l'etat de la commande soit en cree alorsq que :"+this.etat);
+	  }
+	  //valider la commande
+	  this.etat = EtatCommande.VALIDEE;
+	  System.out.println(this.etat);
   }
 
 
