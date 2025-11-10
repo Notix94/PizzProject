@@ -6,20 +6,20 @@ package pizzas;
  * @author Eric Cariou
  */
 public enum TypePizza {
-  
-  /**
-   * Pizzas classiques à la viande : reine, pepperoni, bolognaise...
-   */
-  Viande,
-  
-  /**
-   * Pizzas végétariennes : quatre fromages, vegan aux légumes...
-   */
-  Vegetarienne,
-  
-  /**
-   * Pizzas composées d'ingrédients régionaux : bretonne aux noix de
-   * Saint-Jacques, landaise au canard, savoyarde au reblochon...
-   */
-  Regionale,
+
+	/**
+	 * Pizzas classiques à la viande : reine, pepperoni, bolognaise...
+	 */
+	Viande,
+
+	/**
+	 * Pizzas végétariennes : quatre fromages, vegan aux légumes...
+	 */
+	Vegetarienne,
+
+	/**
+	 * Pizzas composées d'ingrédients régionaux : bretonne aux noix de
+	 * Saint-Jacques, landaise au canard, savoyarde au reblochon...
+	 */
+	Regionale,
 }

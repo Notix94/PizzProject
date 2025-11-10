@@ -7,11 +7,11 @@ package pizzas;
  */
 public class CommandeException extends Exception {
 
-  /**
-   * Identifiant de sérialisation.
-   */
-  private static final long serialVersionUID = -2876441299971092712L;
-  
-  // A COMPLETER SI BESOIN
-  
+	/**
+	 * Identifiant de sérialisation.
+	 */
+	private static final long serialVersionUID = -2876441299971092712L;
+
+	// A COMPLETER SI BESOIN
+
 }

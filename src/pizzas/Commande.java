@@ -1,6 +1,80 @@
 package pizzas;
 
-// A compléter
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * .
+ * 
+ * 
+ * 
+ **/
 public class Commande {
+  int id;
+  int nbrPizza;
+  List<Pizza> listPizza = new ArrayList<>();
   
+  enum EtatCommande {
+    VALIDEE, CREE, TRAITEE
+  }
+  
+  EtatCommande etat;
+  
+  /**
+   * Constructor create command.
+   * 
+   * 
+   * 
+   **/
+  
+  public Commande() {
+    
+    this.etat = EtatCommande.CREE;
+  }
+  
+  public void annulerCommande() {
+    
+  }
+
+
+  /**
+   * add Pizza to the command.
+   * 
+   * 
+   * 
+   **/
+  
+  public void addPizza(Pizza pizza) {
+    listPizza.add(pizza);
+    nbrPizza++;
+  }
+  
+  /**
+   * remove Pizza to the command.
+   * 
+   * 
+   * 
+   **/
+  
+  public void removePizza(Pizza pizza) {
+    listPizza.remove(pizza);
+    nbrPizza--;
+  }
+  
+  @Override
+  public String toString() {
+    return "Commande [id=" + id + ", nbrPizza=" + nbrPizza + ", listPizza="
+        + listPizza + "]";
+    
+  }
+  
+  public EtatCommande getEtat() {
+    return etat;
+  }
+
+
+  public void setEtat(EtatCommande etat) {
+    this.etat = etat;
+  }
+
 }
