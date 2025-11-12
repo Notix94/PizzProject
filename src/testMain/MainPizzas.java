@@ -4,6 +4,7 @@ import java.io.IOException;
 import pizzas.Commande;
 import pizzas.Pizza;
 import pizzas.Evaluation;
+
 /**
  * Classe d'essai de fonctionnement de l'application.
  *
@@ -19,21 +20,20 @@ public class MainPizzas {
    */
   public static void main(String[] args) {
     
- //decla obj
+    // decla obj
     Pizza piz = new Pizza();
     Commande com = new Commande();
     
-    //tester remove et add pizz
-   
+    // tester remove et add pizz
+    
     com.addPizza(piz);
     com.removePizza(piz);
     
-    //verif etat command
+    // verif etat command
     System.out.println(com.getEtat());
     com.validerCommande();
     com.validerCommande();
     System.out.println(com);
-    
     
     
     
