@@ -12,6 +12,9 @@ public class CommandeException extends Exception {
    */
   private static final long serialVersionUID = -2876441299971092712L;
   
-  // A COMPLETER SI BESOIN
+  
+  public CommandeException() {
+    super("Erreur liée à la commande.");
+  }
   
 }
