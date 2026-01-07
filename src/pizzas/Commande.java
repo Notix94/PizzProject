@@ -1,93 +1,101 @@
 package pizzas;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
- * .
+ * Représente une commande passée par un client à la pizzeria.
  * 
+ * <p>Une commande contient une liste de pizzas, un identifiant, un nombre de pizzas,
+ * et un état indiquant si elle est créée, validée ou traitée.
+ * </p>
  * 
- * 
- **/
+ * @author Ewan
+ * @version 1.0
+ */
 public class Commande {
-  int id;
-  int nbrPizza;
-  List<Pizza> listPizza = new ArrayList<>();
+  private int id;
+
+  private List<Pizza> listPizza = new ArrayList<>();
   
-  enum EtatCommande {
-    VALIDEE, CREE, TRAITEE
+  public enum EtatCommande {
+	  CREEE, VALIDEE, TRAITEE
   }
   
-  EtatCommande etat;
+  private EtatCommande etat;
   
   /**
-   * Constructor create command.
-   * 
-   * 
+   *
+   * Constructeur par défaut.
+   * Initialise l'état de la commande à CREE.
    * 
    **/
   
   public Commande() {
-    
-    this.etat = EtatCommande.CREE;
-  }
-  
-  public void annulerCommande() {
-    if(this.etat != EtatCommande.CREE) {
-    	System.out.println("Il faut que l'etat de la commande soit en cree alors que : "+this.etat);
-    }
-    //annuler commande
+	this.listPizza = new ArrayList<>();
+    this.etat = EtatCommande.CREEE;
   }
   
   
-  public void validerCommande() {
-	  if(this.etat != EtatCommande.CREE) {
-		  System.out.println("Il faut que l'etat de la commande soit en cree alorsq que :"+this.etat);
-	  }
-	  //valider la commande
-	  this.etat = EtatCommande.VALIDEE;
-	  System.out.println(this.etat);
-  }
-
-
   /**
-   * add Pizza to the command.
+   * Valide la commande si elle est encore en cours de création.
+   * Change l'état de la commande à VALIDEE.
+   */
+  public void validerCommande() {
+    if (this.etat == EtatCommande.CREEE) {
+        // valider la commande
+        this.etat = EtatCommande.VALIDEE;
+    }
+
+
+  }
+  
+  
+  /**
+   * Ajoute une pizza à la commande si elle est encore en cours de création.
    * 
-   * 
-   * 
-   **/
+   * @param pizza La pizza à ajouter
+   */
   
   public void addPizza(Pizza pizza) {
-    listPizza.add(pizza);
-    nbrPizza++;
+    if (this.etat == EtatCommande.CREEE) {
+      listPizza.add(pizza);
+    
+    }
+    
   }
   
   /**
-   * remove Pizza to the command.
-   * 
-   * 
-   * 
-   **/
+   * Retire une pizza de la commande si elle est encore en cours de création.
+   * @param pizza La pizza à retirer
+   */
   
   public void removePizza(Pizza pizza) {
-    listPizza.remove(pizza);
-    nbrPizza--;
-  }
+    if (this.etat == EtatCommande.CREEE) {
+      listPizza.remove(pizza);
   
-  @Override
-  public String toString() {
-    return "Commande [id=" + id + ", nbrPizza=" + nbrPizza + ", listPizza="
-        + listPizza + "]";
-    
+    } 
   }
   
   public EtatCommande getEtat() {
     return etat;
   }
-
-
-  public void setEtat(EtatCommande etat) {
-    this.etat = etat;
+  public List<Pizza> getPizzas() {
+	    return Collections.unmodifiableList(listPizza);
+	}
+  public double calculerBenefice() {
+	    double benefice = 0.0;
+	    for (Pizza pizza : listPizza) {
+	        benefice += pizza.getPrixVente() - pizza.getPrixMin();
+	    }
+	    return benefice;
+	}
+  @Override
+  public String toString() {
+    return "Commande [id=" + id + ", nbrPizza=" + listPizza.size() + ", listPizza="
+        + listPizza + "]";
+    
   }
-
+  
 }
