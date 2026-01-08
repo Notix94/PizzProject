@@ -1,7 +1,9 @@
 package pizzas;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Représente un ingrédient utilisé dans une pizza.
@@ -13,8 +15,8 @@ import java.util.Set;
  * @author Ewan
  * @version 1.0
  */
-public class Ingredients {
-  
+public class Ingredients implements Serializable {
+    private static final long serialVersionUID = 1L;
   private String nom;
   private double prix;
   private Set<TypePizza> typesInterdits = new HashSet<>();
@@ -70,13 +72,23 @@ public class Ingredients {
 	  if(prix >=0) {
 		  this.prix = prix;
 	  }
-    this.prix = prix;
+    this.prix = prix; 
   }
   @Override
   public String toString() {
-      return nom + " - " + String.format("%.2f €", prix);
-  }
+	  String texte = nom + " - " + String.format("%.2f €", prix);
 
+	    if (!typesInterdits.isEmpty()) {
+	        texte += " [interdit pour : ";
+	        // Concatène les types interdits séparés par des virgules
+	        texte += typesInterdits.stream()
+	                                .map(TypePizza::name)
+	                                .collect(Collectors.joining(", "));
+	        texte += "]";
+	    }
+
+	    return texte;
+	}
   
   
   

@@ -1,5 +1,6 @@
 package pizzas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -16,8 +17,8 @@ import java.util.List;
  * @author Ewan
  * @version 1.0
  */
-public class Pizza {
-
+public class Pizza implements Serializable {
+    private static final long serialVersionUID = 1L;
 	private String nom;
 	private TypePizza type;
 	private List<Ingredients> ingredients;
@@ -112,12 +113,35 @@ public class Pizza {
 			String nomIng = ingre.getNom().toLowerCase();
 			if (nomIng == "jambon" || nomIng == "boeuf") {
 				System.out.println("Viande interdite dans vege");
-				return false;
+				return false; 
 			}
 		}
 		this.ingredients.add(ingre);
 		calculPrixMin(); // recalcul automatique
 		return true;
+	}
+	/**
+	 * Supprime un ingrédient de la pizza.
+	 * 
+	 * @param ingre L'ingrédient à supprimer
+	 * @return true si l'ingrédient a été supprimé, false sinon
+	 */
+	public boolean supprimerIngredient(Ingredients ingre) {
+	    if (ingre == null) {
+	        System.out.println("Pas d'ingrédient valide à supprimer");
+	        return false;
+	    }
+
+	    // Vérifie si l'ingrédient est dans la liste
+	    if (this.ingredients.contains(ingre)) {
+	        this.ingredients.remove(ingre);
+	        calculPrixMin(); // recalcul automatique du prix minimum
+	        System.out.println(ingre.getNom() + " supprimé de la pizza");
+	        return true;
+	    } else {
+	        System.out.println(ingre.getNom() + " n'est pas dans la pizza");
+	        return false;
+	    }
 	}
 	/**
 	 * Calcule le prix de la pizza en fonction des prix des ingrédients.
@@ -150,10 +174,17 @@ public class Pizza {
 			this.eval.add(eval);
 		}
 	}
+    // getter et setter pour la photo
+    public String getPhoto() {
+        return photo;
+    }
 
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 	@Override
 	public String toString() {
-	    return nom + " (" + type + ")";
+	    return nom + " (" + type + ")"+ String.format("%.2f €", prixVente);
 	}
 
 

@@ -1,5 +1,6 @@
 package pizzas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.List;
  * @author Ewan
  * @version 1.0
  */
-public class Commande {
+public class Commande implements Serializable {
+    private static final long serialVersionUID = 1L;
   private int id;
 
   private List<Pizza> listPizza = new ArrayList<>();
@@ -47,7 +49,6 @@ public class Commande {
         // valider la commande
         this.etat = EtatCommande.VALIDEE;
     }
-
 
   }
   
